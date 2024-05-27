@@ -29,7 +29,9 @@ mongoose.connect(process.env.DATABASE_URL, { useNewUrlParser: true, useUnifiedTo
 const generateToken = (userId, email) => {
     return jwt.sign({ userId, email }, process.env.JWT_SECRET, { expiresIn: '24h' });
 };
-
+app.get('/',(req,res)=>{
+  res.send("api is working ");
+})
 // Signup route
 app.post('/signup', async (req, res) => {
     const { name, email, password } = req.body;
