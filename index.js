@@ -24,7 +24,7 @@ const generateToken = (userId, email) => {
 };
 app.get('/',(req,res)=>{
      try {
-        await mongoose.connect(process.env.DATABASE_URL, { useNewUrlParser: true, useUnifiedTopology: true });
+        await mongoose.connect('mongodb+srv://huzaifasaad:12345@cluster0.tds11vo.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0', { useNewUrlParser: true, useUnifiedTopology: true });
         res.send("API is working: MongoDB connection successful");
     } catch (err) {
         console.error("Failed to connect to MongoDB:", err);
