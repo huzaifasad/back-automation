@@ -27,27 +27,27 @@ app.get('/',(req,res)=>{
 
 })
 // Signup route
-app.post('/signup', async (req, res) => {
+app.get('/signup', async (req, res) => {
     const { name, email, password } = req.body;
     
     console.log('singup'+email)
-    // try {
-    //     let user = await User.findOne({ email });
-    //     if (user) {
-    //         return res.status(400).json({ message: "User already exists" });
-    //     }
-    //     user = new User({ name, email, password });  // Assuming no password hashing for demonstration purposes
-    //     await user.save();
-    //     const token = generateToken(user._id, email);
-    //     res.status(201).json({ email: user.email, token });
-    // } catch (err) {
-    //     console.error(err);
-    //     res.status(500).send('Error registering new user');
-    // }
+    try {
+        let user = await User.findOne({ email });
+        if (user) {
+            return res.status(400).json({ message: "User already exists" });
+        }
+        user = new User({ name, email, password });  // Assuming no password hashing for demonstration purposes
+        await user.save();
+        const token = generateToken(user._id, email);
+        res.status(201).json({ email: user.email, token });
+    } catch (err) {
+        console.error(err);
+        res.status(500).send('Error registering new user');
+    }
 });
 
 // Login route
-app.post('/login', async (req, res) => {
+app.get('/login', async (req, res) => {
     const { email, password } = req.body;
     console.log(email)
     try {
