@@ -30,7 +30,7 @@ const generateToken = (userId, email) => {
     return jwt.sign({ userId, email }, process.env.JWT_SECRET, { expiresIn: '24h' });
 };
 app.get('/',(req,res)=>{
-  res.send("api is working ");
+  res.send("api is working login funciton ");
 })
 // Signup route
 app.post('/signup', async (req, res) => {
