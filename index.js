@@ -11,14 +11,7 @@ const User=require('./shecma/models/user')
 
 const app = express();
 app.use(express.json());
-app.use(cors(
-    {
-        origin:"*",
-        methods:["POST","GET"],
-        credentials:true
-    }
-
-));
+app.use(cors());
 
 // MongoDB connection
 mongoose.connect(process.env.DATABASE_URL, { useNewUrlParser: true, useUnifiedTopology: true })
