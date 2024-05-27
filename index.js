@@ -23,7 +23,13 @@ const generateToken = (userId, email) => {
     return jwt.sign({ userId, email }, process.env.JWT_SECRET, { expiresIn: '24h' });
 };
 app.get('/',(req,res)=>{
-  res.send("api is working login funciton ");
+     try {
+        await mongoose.connect(process.env.DATABASE_URL, { useNewUrlParser: true, useUnifiedTopology: true });
+        res.send("API is working: MongoDB connection successful");
+    } catch (err) {
+        console.error("Failed to connect to MongoDB:", err);
+        res.status(500).send("API is working: Failed to connect to MongoDB");
+    }
 })
 // Signup route
 app.post('/signup', async (req, res) => {
